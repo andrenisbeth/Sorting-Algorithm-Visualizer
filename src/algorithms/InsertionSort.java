@@ -1,5 +1,3 @@
-import algorithms.SortStep;
-
 public class InsertionSort {
 
     public static void sort(int[] arr, SortStep cb) {

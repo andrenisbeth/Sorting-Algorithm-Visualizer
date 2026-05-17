@@ -1,5 +1,3 @@
-import algorithms.SortStep;
-
 public class Quicksort {
    
     public static void sort(int[] arr, SortStep cb) {

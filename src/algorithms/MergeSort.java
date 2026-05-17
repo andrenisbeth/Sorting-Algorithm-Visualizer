@@ -1,7 +1,5 @@
 import java.util.Arrays;
 
-import algorithms.SortStep;
-
 public class MergeSort {
 
     public static void sort(int [] arr, SortStep cb) {
