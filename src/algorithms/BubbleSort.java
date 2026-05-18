@@ -1,24 +1,22 @@
 package algorithms;
 
-public class SelectionSort {
+public class BubbleSort {
 
     public static void sort(int[] arr, SortStep cb) {
         int n = arr.length;
         boolean[] sortedFlags = new boolean[n];
 
-        for(int i = 0; i < n - 1; i++) {
-            int minIdx = i;
-            for (int j = i + 1; j < n; j++) {
-                cb.step(arr, new int[]{j, minIdx}, new int[]{}, sortedIndices(sortedFlags));
-                if (arr[j] < arr[minIdx]) {
-                    minIdx = j;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                cb.step(arr, new int[]{j, j+1}, new int[]{}, sortedIndices(sortedFlags));
+                if (arr[j] > arr[j + 1]) {
+                    int tmp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = tmp;
+                    cb.step(arr, new int[]{}, new int[]{j, j+1}, sortedIndices(sortedFlags));
                 }
             }
-            int tmp = arr[i]; arr[i] = arr[minIdx]; arr[minIdx] = tmp;
-            sortedFlags[i] = true;
-            cb.step(arr, new int[]{}, new int[]{i, minIdx}, sortedIndices(sortedFlags));
+            sortedFlags[n - 1 - i] = true;
         }
-        sortedFlags[n - 1] = true;
+        sortedFlags[0] = true;
         cb.step(arr, new int[]{}, new int[]{}, sortedIndices(sortedFlags));
     }
 
