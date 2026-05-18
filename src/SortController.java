@@ -5,25 +5,43 @@ public class SortController {
     private final SortPanel panel;
     private Thread worker;
 
+    // SortPanel is injected so the controller can push updates to the UI
     public SortController(SortPanel panel) {
         this.panel = panel;
     }
 
+    // Interrupts the worker thread if a sort is already running
     public void stop() {
         if (worker != null) worker.interrupt();
     }
 
     public void run(String algo, int[] arr) {
+        // Stop any ongoing sort before starting a new one
         stop();
+        // work on a copy so the original array is not modified
         int[] copy = arr.clone();
 
+        // Callback passed to the algorithm, called after every comparison and swap
+        SortStep cb = (a, comparing, swapping, sorted) -> {
+            // Swing requires all UI updates to happen on the Event Dispatch Thread
+            SwingUtilities.invokelater(() -> panel.update(a, comparing, swapping, sorted));
+            try {
+                // Pause between steps so the animation is visible
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                // Re-interrupt so the thread knows to stop cleanly
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        // Run algorithm on a background thread so the UI does not freeze
         worker = new Thread(() -> {
             switch(algo) {
-                case "bubble" -> BubbleSort.sort(copy, null);
-                case "insertion" -> InsertionSort.sort(copy, null);
-                case "selection" -> SelectionSort.sort(copy, null);
-                case "merge" -> MergeSort.sort(copy, null);
-                case "quick" -> Quicksort.sort(copy, null);
+                case "bubble" -> BubbleSort.sort(copy, cb);
+                case "insertion" -> InsertionSort.sort(copy, cb);
+                case "selection" -> SelectionSort.sort(copy, cb);
+                case "merge" -> MergeSort.sort(copy, cb);
+                case "quick" -> Quicksort.sort(copy, cb);
             }
         });
         worker.setDaemon(true);
