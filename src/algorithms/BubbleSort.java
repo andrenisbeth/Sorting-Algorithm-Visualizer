@@ -1,3 +1,5 @@
+package algorithms;
+
 public class BubbleSort {
 
     public static void sort(int[] arr, SortStep cb) {

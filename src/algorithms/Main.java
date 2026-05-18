@@ -1,3 +1,4 @@
+package algorithms;
 import java.util.Arrays;
 
 public class Main {
@@ -24,7 +25,7 @@ public class Main {
     private static void testSort(String algo, int[] arr) {
         System.out.println("Before: " + Arrays.toString(arr));
 
-        SortStep cb = (a, comapring, swapping, sorted) -> {
+        SortStep cb = (a, comparing, swapping, sorted) -> {
             if (swapping.length > 0) {
                 System.out.println("  swap  " + Arrays.toString(swapping) + " -> " + Arrays.toString(a));
             }
