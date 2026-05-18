@@ -16,3 +16,6 @@ This is a Java Swing application that visually demonstrates how different sortin
 
 ### How to use
 TBA
+
+### AI Disclosure
+AI was used to make comments inside code 
