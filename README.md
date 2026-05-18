@@ -1,11 +1,18 @@
-# Project Sorting Algorithm Visualizer
+# Sorting Algorithm Visualizer
 
 ### Description
-This is a program that will visually demonstrate different sorting algorithms in real time to improve the users 
-understanding of how they function.
+This is a Java Swing application that visually demonstrates how different sorting algorithms work in real time through animated bar visualizations.
 
 ### Features
 - Animated bar chart visualisation
-- Multiple sorting algorithms (Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort)
+- Multiple sorting algorithms
+  - Bubble Sort Selection Sort
+  - Insertion Sort
+  - Merge Sort
+  - Quick Sort)
+- Color coded bars
 - Adjustable animation speed
-- Randomize/rest array
+- Randomize/reset array
+
+### How to use
+TBA
