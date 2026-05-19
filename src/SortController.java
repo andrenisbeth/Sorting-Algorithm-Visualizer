@@ -31,7 +31,7 @@ public class SortController {
         // Callback passed to the algorithm, called after every comparison and swap
         SortStep cb = (a, comparing, swapping, sorted) -> {
             // Swing requires all UI updates to happen on the Event Dispatch Thread
-            SwingUtilities.invokelater(() -> panel.update(a, comparing, swapping, sorted));
+            SwingUtilities.invokeLater(() -> panel.update(a, comparing, swapping, sorted));
             try {
                 // Use configurable delay between steps so the animation is visible
                 Thread.sleep(delayMs);
