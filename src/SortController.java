@@ -39,7 +39,7 @@ public class SortController {
                 // Re-interrupt so the thread knows to stop cleanly
                 Thread.currentThread().interrupt();
             }
-        }
+        };
 
         // Run algorithm on a background thread so the UI does not freeze
         worker = new Thread(() -> {
